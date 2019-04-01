@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 /**
  * Class singleton
@@ -16,7 +15,8 @@ import java.util.logging.Logger;
  *
  */
 public class ConnectionMysql implements ConnectionDatabase {
-	private static Logger log = Logger.getLogger(ConnectionMysql.class.getName());
+	private static org.apache.log4j.Logger log = org.apache.log4j.Logger
+			.getLogger(ConnectionMysql.class.getName());
 	private static ConnectionMysql instance;
 	private Properties prop;
 	private Connection connection;
@@ -40,6 +40,7 @@ public class ConnectionMysql implements ConnectionDatabase {
 	}
 
 	public void setConnectionDB() throws IOException, ClassNotFoundException, SQLException {
+		log.info("SET CONNECTION");
 		InputStream inStream = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
